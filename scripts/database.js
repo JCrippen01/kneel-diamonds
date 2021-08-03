@@ -64,3 +64,20 @@ export const getStyles = () => {
 export const getOrders = () => {
     return database.customOrders.map(order => ({...order}))
 }
+export const addCustomOrder = () => {
+    const newOrder = {...database.orderBuilder}
+    const lastIndex = database.customOrders.length - 1
+    newOrder.id = database.customOrders[lastIndex].id + 1
+    newOrder.timestamp = Date.now()
+    database.customOrders.push(newOrder)
+    database.orderBuilder = {}
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+//NOTES FOR ADD CUSTOMER FUNC
+// Copy the current state of user choices
+// Add a new primary key to the object
+// Add a timestamp to the order
+// Add the new order object to custom orders state
+// Reset the temporary state for user choices
+// Broadcast a notification that permanent state has changed
