@@ -11,8 +11,9 @@ document.addEventListener(
 )
 
 export const KneelDiamonds = () => {
+    const storeName= "Kneel Diamonds"
     return `
-        <h1>Kneel Diamonds</h1>
+        <h1>Welcome to ${storeName}, where we have all the real bargins!</h1>
             
         <article class="choices">
             <section class="choices__metals options">
@@ -39,4 +40,7 @@ export const KneelDiamonds = () => {
         </article>
     `
 }
+
+//Notes:
+// Line 7 document.addEventListener function was pre-added. Not sure if this is needed.
 

@@ -14,7 +14,7 @@ document.addEventListener(
 export const DiamondSizes = () => {
     let html = "<ul>"
 
-    // Use .map() for converting objects to <li> elements
+    
     const listItems = sizes.map (
         (size) => {
         return `<li>
@@ -29,3 +29,5 @@ export const DiamondSizes = () => {
     return html
 }
 
+//Notes:
+//Line 18(const listItems) Use .map() for converting objects to <li> elements
