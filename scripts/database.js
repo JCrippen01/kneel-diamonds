@@ -25,15 +25,7 @@ const database = {
         { id: 4, metal: "Platinum", price: 795.45 },
         { id: 5, metal: "Palladium", price: 1241.0 }
     ],
-    customOrders: [
-        {
-            id: 1,
-            metalId: 3,
-            sizeId: 2,
-            styleId: 3,
-            timestamp: 1614659931693
-        }
-    ],
+    customOrders: [], //Removed metalId, sizeId, styleId, timestamp
 
     orderBuilder: {}, //Transient State
 }
@@ -66,18 +58,24 @@ export const getOrders = () => {
 }
 export const addCustomOrder = () => {
     const newOrder = {...database.orderBuilder}
+
+    if (database.customOrders.length === 0){
+        newOrder.id = 1
+    }else { 
     const lastIndex = database.customOrders.length - 1
     newOrder.id = database.customOrders[lastIndex].id + 1
+    }
     newOrder.timestamp = Date.now()
     database.customOrders.push(newOrder)
     database.orderBuilder = {}
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-//NOTES FOR ADD CUSTOMER FUNC
+//NOTES FOR ADD CUSTOMER
 // Copy the current state of user choices
 // Add a new primary key to the object
 // Add a timestamp to the order
 // Add the new order object to custom orders state
 // Reset the temporary state for user choices
 // Broadcast a notification that permanent state has changed
+//{...Spreadoperator}
